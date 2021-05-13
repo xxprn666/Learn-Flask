@@ -1,0 +1,35 @@
+version: '3.8'
+services: 
+  backend:
+    build: 
+      context: ./restapi
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      - SQLALCHEMY_DATABASE_URI=postgresql://dbheheh:123@postgres/dbheheh
+    volumes: 
+      - "./restapi:/app"
+      - "/app/migrations"
+    ports: 
+      - "0.0.0.0:5004:5000"
+    depends_on: 
+      - postgres
+      - pgadmin4
+  postgres:
+    image: "postgres"
+    restart: always
+    environment: 
+      - TZ=Asia/Kuala_Lumpur
+      - POSTGRES_DB=dbheheh
+      - POSTGRES_USER=dbheheh
+      - POSTGRES_PASSWORD=123
+  pgadmin4:
+    image: "dpage/pgadmin4"
+    ports: 
+      - "0.0.0.0:5437:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=hehe@banjar.com
+      - PGADMIN_DEFAULT_PASSWORD=123
+networks:
+  default:
+    name: restapi_networks
