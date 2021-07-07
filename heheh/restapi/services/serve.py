@@ -8,4 +8,3 @@ app.config.from_object(Development)
 
 db = SQLAlchemy(app)
 Migrate(app,db)
-

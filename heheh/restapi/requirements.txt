@@ -32,3 +32,4 @@ URLObject
 Werkzeug
 wincertstore
 WTForms
+psycopg2-binary
